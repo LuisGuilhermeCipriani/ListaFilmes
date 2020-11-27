@@ -7,10 +7,12 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -64,7 +66,12 @@ public class MainActivity extends AppCompatActivity implements FilmeAdapter.OnFi
             Intent intent = new Intent(getApplicationContext(), CriaFilmeActivity.class);
             startActivityForResult(intent, REQUEST_CRIA_FILME);
         } catch (NumberFormatException ex){
+            Context contexto = getApplicationContext();
+            String texto = "Erro";
+            int duracao = Toast.LENGTH_SHORT;
 
+            Toast toast = Toast.makeText(contexto, texto, duracao);
+            toast.show();
         }
     }
 
@@ -82,8 +89,9 @@ public class MainActivity extends AppCompatActivity implements FilmeAdapter.OnFi
                 ano = data.getExtras().getString("ano");
                 estilo = data.getExtras().getString("estilo");
                 diretor = data.getExtras().getString("diretor");
+                assistido = data.getExtras().getBoolean("assistido");
             }
-            filmes.add(new Filme(titulo, ano, estilo, diretor, true));
+            filmes.add(new Filme(titulo, ano, estilo, diretor, assistido));
         }
     }
 

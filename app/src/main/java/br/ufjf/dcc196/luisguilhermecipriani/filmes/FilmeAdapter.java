@@ -33,9 +33,12 @@ public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.FilmeViewHol
 
     @Override
     public void onBindViewHolder(@NonNull FilmeViewHolder holder, int position) {
-        String verificaAssistido = "Não Assistido";
-        if(filmes.get(position).getAssistido().toString() == "true")
+        String verificaAssistido;
+        if(filmes.get(position).getAssistido().toString() == "true") {
             verificaAssistido = "Assistido";
+        }else {
+            verificaAssistido = "Não Assistido";
+        }
 
         holder.textViewTitulo.setText(filmes.get(position).getTitulo());
         holder.textViewAno.setText(filmes.get(position).getAno());

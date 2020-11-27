@@ -17,6 +17,7 @@ public class CriaFilmeActivity extends AppCompatActivity {
     private EditText editTextTextAno;
     private EditText editTextTextEstilo;
     private EditText editTextTextDiretor;
+    private Boolean assistido;
     private RadioButton sim;
     private RadioButton nao;
     private Button criar;
@@ -38,29 +39,44 @@ public class CriaFilmeActivity extends AppCompatActivity {
     }
 
     public void criaClick(View view) {
-        String titulo = editTextTextTitulo.getText().toString();
-        String ano = editTextTextAno.getText().toString();
-        String estilo = editTextTextEstilo.getText().toString();
-        String diretor = editTextTextDiretor.getText().toString();
-        //Boolean assistido
+        try {
+            String titulo = editTextTextTitulo.getText().toString();
+            String ano = editTextTextAno.getText().toString();
+            String estilo = editTextTextEstilo.getText().toString();
+            String diretor = editTextTextDiretor.getText().toString();
+            if (sim.isChecked()) {
+                assistido = true;
+            }
+            if (nao.isChecked()) {
+                assistido = false;
+            }
 
-        Intent resultado = new Intent();
-        resultado.putExtra("titulo", titulo);
-        resultado.putExtra("ano", ano);
-        resultado.putExtra("estilo", estilo);
-        resultado.putExtra("diretor", diretor);
-        resultado.putExtra("assistido", false);
-        setResult(RESULT_OK, resultado);
+            Intent resultado = new Intent();
+            resultado.putExtra("titulo", titulo);
+            resultado.putExtra("ano", ano);
+            resultado.putExtra("estilo", estilo);
+            resultado.putExtra("diretor", diretor);
+            resultado.putExtra("assistido", assistido);
+            setResult(RESULT_OK, resultado);
 
-        Context contexto = getApplicationContext();
-        String texto = "Filme Criado!";
-        int duracao = Toast.LENGTH_SHORT;
+            Context contexto = getApplicationContext();
+            String texto = "Filme Criado!";
+            int duracao = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(contexto, texto,duracao);
-        toast.show();
+            Toast toast = Toast.makeText(contexto, texto, duracao);
+            toast.show();
+        }catch (Exception e){
+            Context contexto = getApplicationContext();
+            String texto = "Erro";
+            int duracao = Toast.LENGTH_SHORT;
+
+            Toast toast = Toast.makeText(contexto, texto, duracao);
+            toast.show();
+        }
+
     }
 
-    public void retornarClick(View view){
+    public void retornarClick(View view) {
         finish();
     }
 }
