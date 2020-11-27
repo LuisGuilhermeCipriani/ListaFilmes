@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        filmes = new ArrayList<Filme>(){{
+        filmes = new ArrayList<Filme>() {{
             add(new Filme("IT - A Coisa", "2017", "Terror", "Andy Muschietti", true));
             add(new Filme("Vingadores Ultimato", "2019", "Ação", "Joe Russo", false));
             add(new Filme("Histórias Cruzadas", "2012", "Drama", "Tate Taylor", true));
@@ -30,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
             add(new Filme("Voo Noturno", "2005", "Suspense", "Wes Craven", true));
         }};
 
-        recyclerViewFilmes =findViewById(R.id.recyclerViewFilmes);
+        recyclerViewFilmes = findViewById(R.id.recyclerViewFilmes);
         layoutManager = new LinearLayoutManager(this);
         recyclerViewFilmes.setLayoutManager(layoutManager);
         filmeAdapter = new FilmeAdapter(filmes);
@@ -50,5 +52,10 @@ public class MainActivity extends AppCompatActivity {
         };
 
         new ItemTouchHelper(touchHelperCallback).attachToRecyclerView(recyclerViewFilmes);
+    }
+
+    public void criaFilmeClick(View view) {
+        Intent intent = new Intent(getApplicationContext(), CriaFilmeActivity.class);
+        startActivity(intent);
     }
 }
