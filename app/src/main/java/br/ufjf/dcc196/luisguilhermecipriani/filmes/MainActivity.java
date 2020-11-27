@@ -1,6 +1,8 @@
 package br.ufjf.dcc196.luisguilhermecipriani.filmes;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Filme> filmes;
     private LinearLayoutManager layoutManager;
     private FilmeAdapter filmeAdapter;
+    private ItemTouchHelper.SimpleCallback touchHelperCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +35,20 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewFilmes.setLayoutManager(layoutManager);
         filmeAdapter = new FilmeAdapter(filmes);
         recyclerViewFilmes.setAdapter(filmeAdapter);
+
+        touchHelperCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.ACTION_STATE_IDLE, ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                filmes.remove(viewHolder.getAdapterPosition());
+                filmeAdapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        };
+
+        new ItemTouchHelper(touchHelperCallback).attachToRecyclerView(recyclerViewFilmes);
     }
 }
