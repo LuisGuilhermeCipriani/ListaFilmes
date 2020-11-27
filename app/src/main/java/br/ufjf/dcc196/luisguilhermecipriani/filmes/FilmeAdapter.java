@@ -14,9 +14,11 @@ import java.util.List;
 
 public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.FilmeViewHolder> {
     private final List<Filme> filmes;
+    private Object listener;
 
-    public FilmeAdapter(List<Filme> filmes) {
+    public FilmeAdapter(List<Filme> filmes, OnFilmeClickListener listener) {
         this.filmes = filmes;
+        this.listener = listener;
     }
 
     @NonNull
@@ -53,7 +55,7 @@ public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.FilmeViewHol
         private TextView textViewEstilo;
         private TextView textViewDiretor;
         private TextView textViewAssistido;
-        public FilmeViewHolder(@NonNull View itemView) {
+        public FilmeViewHolder(@NonNull final View itemView) {
             super(itemView);
             textViewTitulo = itemView.findViewById(R.id.textViewTitulo);
             textViewAno = itemView.findViewById(R.id.textViewAno);
@@ -61,5 +63,9 @@ public class FilmeAdapter extends RecyclerView.Adapter<FilmeAdapter.FilmeViewHol
             textViewDiretor = itemView.findViewById(R.id.textViewDiretor);
             textViewAssistido = itemView.findViewById(R.id.textViewAssistido);
         }
+    }
+
+    public interface OnFilmeClickListener{
+        void onFilmeCLick(View soure, int position);
     }
 }

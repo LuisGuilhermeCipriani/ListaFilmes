@@ -16,7 +16,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FilmeAdapter.OnFilmeClickListener{
     private RecyclerView recyclerViewFilmes;
     private List<Filme> filmes;
     private LinearLayoutManager layoutManager;
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewFilmes = findViewById(R.id.recyclerViewFilmes);
         layoutManager = new LinearLayoutManager(this);
         recyclerViewFilmes.setLayoutManager(layoutManager);
-        filmeAdapter = new FilmeAdapter(filmes);
+        filmeAdapter = new FilmeAdapter(filmes, this);
         recyclerViewFilmes.setAdapter(filmeAdapter);
 
         touchHelperCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.ACTION_STATE_IDLE, ItemTouchHelper.RIGHT) {
@@ -85,5 +85,10 @@ public class MainActivity extends AppCompatActivity {
             }
             filmes.add(new Filme(titulo, ano, estilo, diretor, true));
         }
+    }
+
+    @Override
+    public void onFilmeCLick(View soure, int position) {
+        filmeAdapter.notifyDataSetChanged();
     }
 }
