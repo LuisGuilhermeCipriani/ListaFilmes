@@ -2,13 +2,65 @@ package br.ufjf.dcc196.luisguilhermecipriani.filmes;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
 public class CriaFilmeActivity extends AppCompatActivity {
+    private EditText editTextTextTitulo;
+    private EditText editTextTextAno;
+    private EditText editTextTextEstilo;
+    private EditText editTextTextDiretor;
+    private RadioButton sim;
+    private RadioButton nao;
+    private Button criar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cria_filme);
+
+        editTextTextTitulo = findViewById(R.id.editTextTextTitulo);
+        editTextTextAno = findViewById(R.id.editTextTextAno);
+        editTextTextEstilo = findViewById(R.id.editTextTextEstilo);
+        editTextTextDiretor = findViewById(R.id.editTextTextDiretor);
+
+        sim = (RadioButton) findViewById(R.id.radioButtonSim);
+        nao = (RadioButton) findViewById(R.id.radioButtonNao);
+        criar = findViewById(R.id.buttonCriar);
+    }
+
+    public void criaClick(View view) {
+        String titulo = editTextTextTitulo.getText().toString();
+        String ano = editTextTextAno.getText().toString();
+        String estilo = editTextTextEstilo.getText().toString();
+        String diretor = editTextTextDiretor.getText().toString();
+        //Boolean assistido
+
+        Intent resultado = new Intent();
+        resultado.putExtra("titulo", titulo);
+        resultado.putExtra("ano", ano);
+        resultado.putExtra("estilo", estilo);
+        resultado.putExtra("diretor", diretor);
+        resultado.putExtra("assistido", false);
+        setResult(RESULT_OK, resultado);
+
+        Context contexto = getApplicationContext();
+        String texto = "Filme Criado!";
+        int duracao = Toast.LENGTH_SHORT;
+
+        Toast toast = Toast.makeText(contexto, texto,duracao);
+        toast.show();
+    }
+
+    public void retornarClick(View view){
+        finish();
     }
 }

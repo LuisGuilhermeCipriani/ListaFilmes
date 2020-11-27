@@ -1,6 +1,7 @@
 package br.ufjf.dcc196.luisguilhermecipriani.filmes;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +10,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private FilmeAdapter filmeAdapter;
     private ItemTouchHelper.SimpleCallback touchHelperCallback;
+
+    public static final int REQUEST_CRIA_FILME = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +60,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void criaFilmeClick(View view) {
-        Intent intent = new Intent(getApplicationContext(), CriaFilmeActivity.class);
-        startActivity(intent);
+        try{
+            Intent intent = new Intent(getApplicationContext(), CriaFilmeActivity.class);
+            startActivityForResult(intent, REQUEST_CRIA_FILME);
+        } catch (NumberFormatException ex){
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        String titulo = "";
+        String ano = "";
+        String estilo = "";
+        String diretor = "";
+        Boolean assistido = false;
+        if(resultCode == RESULT_OK){
+            if(requestCode == REQUEST_CRIA_FILME){
+                titulo = data.getExtras().getString("titulo");
+                ano = data.getExtras().getString("ano");
+                estilo = data.getExtras().getString("estilo");
+                diretor = data.getExtras().getString("diretor");
+            }
+            filmes.add(new Filme(titulo, ano, estilo, diretor, true));
+        }
     }
 }

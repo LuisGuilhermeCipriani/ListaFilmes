@@ -90,53 +90,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:text="O filme já foi assistido?"
+        android:text="Já ssistido?"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
-    <RadioButton
-        android:id="@+id/radioButtonNao"
-        android:layout_width="72dp"
-        android:layout_height="23dp"
-        android:text="NÃO"
-        android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/radioButtonSim"
-        app:layout_constraintEnd_toEndOf="@+id/textView" />
-
-    <RadioButton
-        android:id="@+id/radioButtonSim"
-        android:layout_width="72dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="24dp"
-        android:text="SIM"
-        android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextDiretor" />
-
-    <Button
-        android:id="@+id/buttonRetornar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Retornar"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonCriar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonCriar" />
-
     <Button
         android:id="@+id/buttonCriar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:onClick="criaClick"
         android:text="Criar"
         app:layout_constraintEnd_toStartOf="@+id/buttonRetornar"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <Button
+        android:id="@+id/buttonRetornar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="retornarClick"
+        android:text="Retornar"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonCriar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonCriar" />
 
     <EditText
         android:id="@+id/editTextTextDiretor"
@@ -173,5 +154,27 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <RadioGroup
+        android:layout_width="117dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="@+id/editTextTextDiretor"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextDiretor">
+
+        <RadioButton
+            android:id="@+id/radioButtonSim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SIM" />
+
+        <RadioButton
+            android:id="@+id/radioButtonNao"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="NÃO" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
