@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Filmes</string>
+    <string name="textViewAno">TextView</string>
+    <string name="textViewTitulo">TextView</string>
+    <string name="textViewEstilo">TextView</string>
+    <string name="textViewDiretor">TextView</string>
+    <string name="textViewAssistido">TextView</string>
+    <string name="textViewInformacao">Digite as informações abaixo para criar um novo filme</string>
+    <string name="textViewDiretor2">Diretor:</string>
+    <string name="textViewTitulo2">Título:</string>
+    <string name="textViewAssistido2">Já assistido?</string>
+    <string name="buttonCriar">Criar</string>
+    <string name="buttonRetornar">Retornar</string>
+    <string name="textViewEstilo2">Estilo</string>
+    <string name="textViewAno2">Ano:</string>
+    <string name="radioButtonSim">SIM</string>
+    <string name="radioButtonNao">NÃO</string>
+    <string name="buttonNovoFilme">Criar novo filme</string>
 </resources>
