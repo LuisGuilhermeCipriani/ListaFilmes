@@ -1,5 +1,6 @@
 package br.ufjf.dcc196.luisguilhermecipriani.filmes;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;

@@ -35,15 +35,10 @@ public class MainActivity extends AppCompatActivity implements FilmeAdapter.OnFi
             add(new Filme("IT - A Coisa", "2017", "Terror", "Andy Muschietti", true));
             add(new Filme("Vingadores Ultimato", "2019", "Ação", "Joe Russo", false));
             add(new Filme("Histórias Cruzadas", "2012", "Drama", "Tate Taylor", true));
-            add(new Filme("Amor com Data Marcada", "2020", "Comédia", "John Whitesell", false));
             add(new Filme("Voo Noturno", "2005", "Suspense", "Wes Craven", true));
         }};
 
-        recyclerViewFilmes = findViewById(R.id.recyclerViewFilmes);
-        layoutManager = new LinearLayoutManager(this);
-        recyclerViewFilmes.setLayoutManager(layoutManager);
-        filmeAdapter = new FilmeAdapter(filmes, this);
-        recyclerViewFilmes.setAdapter(filmeAdapter);
+        updateItens();
 
         touchHelperCallback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.ACTION_STATE_IDLE, ItemTouchHelper.RIGHT) {
             @Override
@@ -93,6 +88,16 @@ public class MainActivity extends AppCompatActivity implements FilmeAdapter.OnFi
             }
             filmes.add(new Filme(titulo, ano, estilo, diretor, assistido));
         }
+
+        updateItens();
+    }
+
+    public void updateItens(){
+        recyclerViewFilmes = findViewById(R.id.recyclerViewFilmes);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerViewFilmes.setLayoutManager(layoutManager);
+        filmeAdapter = new FilmeAdapter(filmes, this);
+        recyclerViewFilmes.setAdapter(filmeAdapter);
     }
 
     @Override
